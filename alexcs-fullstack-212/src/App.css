@@ -6,7 +6,8 @@
   border: 1px solid silver;
   width: 90vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: space-around;
   flex-wrap: wrap;
 }
 .country-listing > div {
@@ -16,4 +17,17 @@
   margin: .5rem;
   border-radius: .75rem;
   background-color: #cce;
+}
+
+.country-detail > div {
+  width: 50vw;
+  height: 50rem;
+  padding: 1rem;
+  margin: auto;
+  border-radius: .75rem;
+  background-color: #cce;
+}
+.country-detail > div img {
+  width: 5vw;
+  height: auto;
 }

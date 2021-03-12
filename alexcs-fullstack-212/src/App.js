@@ -23,17 +23,12 @@ function App() {
 
   useEffect(() => {
     console.log(`Search term changed, ${search}`)
-    // axios
-    //   .get(`https://restcountries.eu/rest/v2/name/${search}`)
-    //   .then(response => {
-    //     console.log('promise fulfilled')
-    //     console.log(response.data)
-    //     setCountries(response.data)
-    //   })
+
     const filteredList =  countries.filter(({name, altSpellings}) =>
                           name.toLowerCase().includes(search.toLowerCase() )||
                           altSpellings.some(spelling=>spelling.toLowerCase().includes(search.toLowerCase() ))
   ) 
+  console.log(filteredList.length, filteredList);
     setFilteredCountries( filteredList )
   }, [search,countries])
 
@@ -55,7 +50,7 @@ function App() {
           onChange={(event) => {handleOnChange(event)}}
         />
       </div>
-      {search ? (
+      {search ? filteredCountries.length > 1 ? (
       <div>
         <h2>Filtered list (filtered by {search} )</h2>
         <div className='country-listing'>
@@ -64,7 +59,28 @@ function App() {
                     : filteredCountries.map(country=>(<div>{country.name}</div>))}
         </div>
       </div>
-      ) : (
+      ) : filteredCountries.length === 0 ? (
+        <div className='country-listing'>
+          <div>No Matching Countries found.</div>
+        </div>
+        ) : (
+          <div className='country-detail'>
+            <div>
+              <h3>{filteredCountries[0].name}</h3>
+              <figure>
+                <img src={filteredCountries[0].flag} alt='The country flag' />
+                <figcaption>{filteredCountries[0].name}</figcaption>
+              </figure>
+              <div>
+                <span><strong>Capital:</strong> {filteredCountries[0].capital}</span>
+                <div>
+                  <h4>Languages Spoken:</h4>
+                  {filteredCountries[0].languages.map(language=>(<div>{language.name}</div>))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
       <div>
         <h2>All countries</h2>
         <div className='country-listing'>

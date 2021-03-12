@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+}
+
+.country-listing {
+  border: 1px solid silver;
+  width: 90vw;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.country-listing > div {
+  width: 25vw;
+  height: 3rem;
+  padding: 1rem;
+  margin: .5rem;
+  border-radius: .75rem;
+  background-color: #cce;
+}
